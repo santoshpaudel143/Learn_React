@@ -1,56 +1,32 @@
-.App {
-  z-index: 1;
-  margin: 0;}
-
-.title{
-  position: fixed;
-  position: center;
-  width: 100%;
-  margin-bottom: 10px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#div3 input{
-  padding: 15px;
-  width: 91%;
-  background-color: black;
-  color: lime;
-  border-color: lime;
-  border-radius: 20px;
-  outline-style: none;
-
+body{
+  font-family: Arial, Helvetica, Sans-sarif;
+  line-height: 1.4;
 }
 
-#div3 button{
-  cursor: pointer;
-  padding: 10px;
-  margin-right: 20px;
-  float: right;
-  border-radius: 80%;
-  border-color: lime;
-  color: black;
-  background-color: green;
-  outline-style: none;
-
+a{
+  color: #333;
+  text-decoration: none;
 }
 
-#div3 button:hover {
-  background: lime;
+.container{
+	padding: 0 1rem;
 }
 
-#div2{
-  height: 605px;
-  overflow: scroll;
-  margin-top: 0px;
-  background-color: black;
+.btn{
+	display: inline-block;
+	border: none;
+	background: #555;
+	color: #fff;
+	padding: 7px 20px;
+	cursor: pointer; 
 }
 
-marquee{
-  height: 50px;
-  padding: 5px;
-
-}
-
-h1{
-  position: fixed;
-  margin-top: 5px;
+.btn:hover {
+	background: #666;
 }

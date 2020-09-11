@@ -1,59 +1,67 @@
-import React,  {useState, useEffect} from 'react';
+import React, {Component} from 'react';
+import Todos from './components/Todos';
 import './App.css';
-import Test from './Test.js';
-import firebase from 'firebase';
-import db from "./firebase";
-import Message from './Message.js'
+import Header from './components/layout/Header';
+import AddTodo from './components/AddTodo';
+import {v4 as uuid} from "uuid";
 
-function App() {
-  const [input, setInput] = useState('');
-  const [message, setMessage] = useState([]);
-  const [userName, setUserName] = useState('');
-
-  useEffect(()=>{
-    setUserName(prompt('Enter Your username'))
-  },[]);
-
-  useEffect(() => {
-        // run once when the app component loads
-    db.collection('message').orderBy('timestamp', 'asc').onSnapshot(snapshot => {
-           setMessage(snapshot.docs.map(doc => ({id: doc.id, message: doc.data()})))
-        });
-    }, []);
-
-  const sendMessage = (event)=> {
-    event.preventDefault();
-    db.collection('message').add({
-      message: input,
-      userName: userName,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    setInput('');
+class App extends Component {
+  state = {
+    todos:[
+      {
+        id:uuid(),
+        title: 'Take out the trash',
+        completed: false
+      },
+      {
+        id:uuid(),
+        title: 'Complete the task',
+        completed: false
+      },
+      {
+        id:uuid(),
+        title: 'Play game',
+        completed: false
+      }
+    ]
   }
 
-  return (
-    <div className="App">
-      <div className="title">
-        <marquee direction = "Right" bgcolor="Blue" text = "Blue"><b><h1>The BOSS_ Chatting Group</h1></b></marquee>
-      </div>
-      <div id='div2'>
-      {
-        message.map(({id, message}) => {
-          return (
-            <Message psr={userName} userName={message.userName}
-            message={message.message}/>
-          );
-        })
+  // Toggle Complete
+  markComplete = (id) => {
+    this.setState({todos: this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed
       }
+      return todo;
+    })});
+  }
+
+  // Delete Todo
+  delTodo = (id) => {
+    this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+  }
+
+  // Add Todo
+  AddTodo = (title) => {
+    const newTodo = {
+      id: uuid(),
+      title,
+      completed: false
+    }
+    this.setState({todos: [...this.state.todos, newTodo]})
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <div className="container">
+          <Header/>
+          <AddTodo AddTodo = {this.AddTodo}/>
+          <Todos todos= {this.state.todos} markComplete = {this.markComplete} delTodo = {this.delTodo}/>
+        </div>
       </div>
-      <div id='div3'>
-       <form>
-          <input placeholder="Type your message" onChange={event => setInput (event.target.value)} value={input}/>
-          <button onClick={sendMessage} disabled={!input}> Send </button>
-      </form>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 export default App;
-    
+// 1:15:00 https://www.youtube.com/watch?v=sBws8MSXN7A&t=1706s&fbclid=IwAR1RXaDvcaAhZh6_9KFy0iDHLwUS2IQBuacP0bJI37LZBHxmyOqL5OK691E
