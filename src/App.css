@@ -1,15 +1,56 @@
 .App {
-  text-align: center;
-  color: blue;
+  z-index: 1;
+  margin: 0;}
+
+.title{
+  position: fixed;
+  position: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#div3 input{
+  padding: 15px;
+  width: 91%;
+  background-color: black;
+  color: lime;
+  border-color: lime;
+  border-radius: 20px;
+  outline-style: none;
 
 }
 
- h1{
-	font-family: "Lucida Console", Courier, monospace;
+#div3 button{
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 20px;
+  float: right;
+  border-radius: 80%;
+  border-color: lime;
+  color: black;
+  background-color: green;
+  outline-style: none;
+
 }
 
-h1:hover {
-	color: black;
-	text-shadow: 2px 2px lime;
+#div3 button:hover {
+  background: lime;
+}
 
+#div2{
+  height: 605px;
+  overflow: scroll;
+  margin-top: 0px;
+  background-color: black;
+}
+
+marquee{
+  height: 50px;
+  padding: 5px;
+
+}
+
+h1{
+  position: fixed;
+  margin-top: 5px;
 }
