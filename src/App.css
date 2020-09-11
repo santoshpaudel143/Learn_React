@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  color: blue;
+
+}
+
+ h1{
+	font-family: "Lucida Console", Courier, monospace;
+}
+
+h1:hover {
+	color: black;
+	text-shadow: 2px 2px lime;
+
+}

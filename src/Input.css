@@ -1,0 +1,15 @@
+button{
+	color: lime;
+	background-color: black;
+	padding: 10px;
+	border-radius: 50px;
+	outline-style: none;
+}
+
+h3:hover {
+	color: green;
+}
+
+button:hover {
+	color :white;
+}
